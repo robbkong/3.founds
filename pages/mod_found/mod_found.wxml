@@ -1,0 +1,84 @@
+<!--pages/mod_found/mod_found.wxml-->
+<form bindsubmit="formSubmit">
+  <view class="index-desc">请修改您的基金参数</view>
+
+    <view class="page-section">
+      <view class="index-desc">定投标的代码</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="code" class="weui-input" placeholder="基金代码" value = "{{found.code}}"/>
+        </view>
+      </view>
+    </view>  
+
+    <view class="page-section">
+      <view class="index-desc">定投标的名称</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="name" class="weui-input" placeholder="基金名称" value = "{{found.name}}"/>
+        </view>
+      </view>
+    </view>
+
+  <view class="weui-cells__title">使用默认选项
+    <switch class="is_default" name = "is_default" checked bindchange="is_default" value = "{{defaulted}}"  color='#adadad'/>
+  </view>
+
+  <view wx:if="{{defaulted == 0}}">
+    <view class="weui-cells__title">默认定投方式：</view>
+    <picker bindchange="way_setting" value="{{index}}" range="{{way}}">
+      <view class="picker">
+        当前选择：{{way[index]}}
+    </view>
+    </picker>
+
+    <view class="page-section">
+      <view class="index-desc">定投{{unit}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="unit" class="weui-input" placeholder="500" value = "{{money}}" />
+        </view>
+      </view>
+    </view>
+
+  <view class="index-desc">止盈设置</view>
+<view class='online'>
+  <input name="ying" class="input_left" placeholder="浮盈1000元" value = "{{ying}}" />
+  <view class='input_mid'>并且涨幅大于</view>
+  <input name="range" class="input_right" placeholder="10%" value = "{{range}}" />
+</view>
+
+    <view class="weui-cells__title">场内/场外定投：
+      <radio-group class="radio-group" bindchange="radioChange">
+        <label class="radio" wx:for="{{items}}" wx:key="*this">
+          <radio value="{{item.value}}" checked="{{item.checked}}" color='#adadad'/>{{item.name}}
+        </label>
+      </radio-group>
+    </view>
+  
+    <view class="page-section">
+      <view class="index-desc">手续费：万分之</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="fee" class="weui-input" placeholder="3" value = "{{fee}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="index-desc">最小手续费单位</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="least" class="weui-input" placeholder="0.1" value = "{{least}}"/>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="sumbit">
+    <button class="add_sumbit" formType="submit" class='test'>保存</button>
+    <button class="del_sumbit" class='test'>删除</button>
+  </view>
+
+</form>
+

@@ -1,0 +1,34 @@
+<view class="index-desc">基金代码：{{code}}</view>
+<view class="index-desc">基金名称：{{name}}</view>
+<view class="index-desc">基金份额：{{found[0].total_share}}</view>
+<view class="index-desc">当前基金价格：{{price}}</view>
+<view class="index-desc">当前基金市值：{{value}}</view>
+<view class="index-desc">投入金额：{{found[0].input}}</view>
+<view class="index-desc">支取金额：{{found[0].output}}</view>
+<view class="index-desc">绝对收益：{{rate}}%</view>
+<view class="index-desc">年化收益：{{rate_year}}%</view>
+
+<view wx:if="{{date.length}}">
+  <view class="index-desc">基金历史买卖记录：</view>
+  <view class="table">
+    <view class="tr bg-w">
+      <view class="th">时间</view>
+      <view class="th">买卖</view>
+      <view class="th">金额</view>
+    </view>
+    <block wx:for="{{date}}" wx:for-item="info" wx:key="*this">
+      <view class="tr bg-g">
+        <navigator class="tr" catchtap="recordChange" url="../history/history?code={{code}}&index={{index}}">
+          <view class="td">{{info}}</view>
+          <view class="td" wx:if="{{buy[index]}}">买入</view>
+          <view class="td" wx:else>卖出</view>
+          <view class="td">{{mount[index]}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+</view>
+<view wx:else></view>
+
+<button class="fun_add" bindtap="add_found" class='test'>添加历史记录</button>
+<button class="fun_mod" bindtap="mod_found" class='test'>修改基金参数</button>

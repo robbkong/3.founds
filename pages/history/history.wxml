@@ -1,0 +1,46 @@
+<!--pages/history/history.wxml-->
+<form bindsubmit="formSubmit">
+  <view class="table">
+    <view class="tr bg-w">
+      <view class="th">时间</view>
+      <view class="th">买/卖</view>
+      <view class="th">价格</view>
+    </view>
+     <view class="tr bg-w">
+      <view class="th">份额</view>
+      <view class="th">手续费</view>
+      <view class="th">金额</view>
+    </view>
+
+    <view class="tr bg-g">
+      <view class="td">
+        <picker name = "date" mode="date" value="{{history.date}}" start="1950-01-01" end="2050-01-01" bindchange="bindDateChange">
+          {{history.date}}
+        </picker>
+      </view>
+      <view class="td">
+        <view wx:if="{{history.buy}}"><switch name = "switch" checked color='#adadad'/></view>
+        <view wx:else><switch name = "switch" color='#adadad'/></view>
+      </view>
+      <view class="td">
+          <input name="price" placeholder="价格" bindchange="priceChange" value="{{history.price}}"/>
+      </view>
+    </view>
+    <view class="tr bg-g">
+      <view class="td">
+          <input name="share" placeholder="份额" bindchange="shareChange" value="{{history.share}}"/>
+      </view>
+      <view class="td">
+          <input name="fee" placeholder="手续费" bindchange="feeChange" value="{{history.fee}}"/>
+      </view>
+      <view class="td">
+          <input name="total" placeholder="金额" value="{{history.mount}}"/>
+      </view>
+    </view>    
+  </view>
+  
+      <button class="add_sumbit" formType="submit" class='test'>保存</button>
+      <button class="del_sumbit" bindtap="del" class='test'>删除</button>
+
+</form>
+

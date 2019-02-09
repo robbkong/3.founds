@@ -1,0 +1,72 @@
+<!--pages/default_setting/default_setting.wxml-->
+<form bindsubmit="formSubmit">
+  <view class="index-desc">请设置定投规则，在您添加基金时，默认使用如下设置：</view>
+
+  <view class="index-desc">默认定投方式：</view>
+  <picker bindchange="way_setting" value="{{index}}" range="{{way}}">
+    <view class="picker">
+      当前选择：{{way[index]}}
+  </view>
+  </picker>
+
+  <view class="index-desc">定投周期：</view>
+  <picker bindchange="cycle_setting" value="{{index1}}" range="{{cycle}}">
+    <view class="picker">
+      当前选择：{{cycle[index1]}}
+  </view>
+  </picker>
+
+    <view class="page-section">
+      <view class="index-desc">定投{{unit}}</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="unit" class="weui-input" placeholder="500" value = "{{money}}" />
+        </view>
+      </view>
+    </view>
+
+
+  <view class="index-desc">定投时间：</view>
+  <picker bindchange="day_setting" value="{{index2}}" range="{{days}}">
+    <view class="picker">
+      当前选择：{{days[index2]}}
+  </view>
+  </picker>
+
+  <view class="index-desc">止盈设置</view>
+<view class='online'>
+  <input name="ying" class="input_left" placeholder="浮盈1000元" value = "{{ying}}" />
+  <view class='input_mid'>并且涨幅大于</view>
+  <input name="range" class="input_right" placeholder="10%" value = "{{range}}" />
+</view>
+
+  <view class="index-desc">场内/场外定投：  </view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{items}}" wx:key="*this">
+        <radio value="{{item.value}}" checked="{{item.checked}}" color='#adadad'/>{{item.name}}
+      </label>
+    </radio-group>
+
+
+    <view class="page-section">
+      <view class="index-desc">手续费：万分之</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="fee" class="weui-input" placeholder="3" value = "{{fee}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="page-section">
+      <view class="index-desc">最小手续费单位</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+          <input name="least" class="weui-input" placeholder="0.1" value = "{{least}}"/>
+        </view>
+      </view>
+    </view>
+
+  <view class="sumbit">
+    <button class="add_sumbit" formType="submit" class='test'>保存</button>
+  </view>
+</form>

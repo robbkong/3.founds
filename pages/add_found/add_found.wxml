@@ -1,0 +1,75 @@
+<!--pages/add_found/add_found.wxml-->
+<form bindsubmit="formSubmit">
+  <!-- 自动填充功能  -->
+  <view class = "auto">自动填充<switch class="switch" name = "auto" checked bindchange="autoChange"  color='#adadad'/></view>
+  <view class="table">
+    <view class='dis'>
+      <view class="tr bg-w">
+        <view class="th">时间</view>
+        <view class="th">买/卖</view>
+        <view class="th">价格</view>
+      </view>
+      <view class="tr bg-w">
+        <view class="th">份额</view>
+        <view class="th">手续费</view>
+        <view class="th">金额</view>
+      </view>
+    </view>
+
+    <block wx:for="{{dates}}" wx:for-item="date" wx:key="*this">
+    <view class='dis'>
+      <view class="tr bg-g">
+        <view class="td">
+          <picker id = "{{index}}" name = "date{{index}}" mode="date" value="{{date}}" start="1950-01-01" end="2050-01-01" bindchange="bindDateChange">
+            {{date}}
+          </picker>
+        </view>
+        <view class="td">
+          <switch name = "switch{{index}}" checked bindchange="switch1Change"  color='#adadad'/>
+        </view>
+        <view class="td">
+          <view wx:if="{{price[index]}}">
+            <input name="price{{index}}" placeholder="价格" id="{{index}}" bindchange="priceChange" value="{{price[index]}}"/>
+          </view>
+          <view wx:else>
+            <input name="price{{index}}" placeholder="价格" id="{{index}}" bindchange="priceChange"/>
+          </view>
+        </view>
+      </view>
+        <view class="tr bg-g">
+          <view class="td">
+            <view wx:if="{{share[index]}}">
+              <input name="share{{index}}" placeholder="份额" id="{{index}}" bindchange="shareChange" value="{{share[index]}}"/>
+            </view>
+            <view wx:else>
+              <input name="share{{index}}" placeholder="份额" id="{{index}}" bindchange="shareChange"/>
+            </view>
+          </view>
+          <view class="td">
+            <view wx:if="{{fee[index]}}">
+              <input name="fee{{index}}" placeholder="手续费" id="{{index}}" bindchange="feeChange" value="{{fee[index]}}"/>
+            </view>
+            <view wx:else>
+              <input name="fee{{index}}" placeholder="手续费" id="{{index}}" bindchange="feeChange" />
+            </view>
+          </view>
+          <view class="td">
+            <view wx:if="{{mount[index]}}">
+              <input name="total{{index}}" placeholder="金额" value="{{mount[index]}}"/>
+            </view>
+            <view wx:else>
+              <input name="total{{index}}" placeholder="金额" />
+            </view>
+          </view>
+        </view>
+        </view>
+      </block>
+    </view>
+        <button class="add_sumbit" bindtap="add" class='test'>加一行</button>
+        <button class="redu_sumbit" bindtap="reduce" class='test'>减一行</button>
+
+      <view class="sumbit">
+        <button class="add_sumbit" formType="submit" class='test'>保存</button>
+      </view>
+
+</form>

@@ -1,0 +1,3 @@
+<!--pages/setting/setting.wxml-->
+<button class="add_sumbit" bindtap="default_setting" formType="submit" class="test">定投设置</button>
+<button class="add_sumbit" bindtap="found_setting" formType="submit" class="test">添加基金</button>

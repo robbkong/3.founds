@@ -1,0 +1,75 @@
+<!--index.wxml-->
+<view class="index">
+  <view class="index-hd" wx:if="{{no_default}}">
+    您还没有设定定投规则，请先设置。
+    <button class="add_sumbit" bindtap="default_setting" formType="submit" class="test">使用默认值</button>
+    <button class="add_sumbit" bindtap="go_setting" formType="submit" class="test">前往设置</button>
+  </view>
+  <view wx:else>
+  <view class="index-hd">
+    <view class="index-desc">您共投资{{num_found}}支基金，总共投入{{input}}元，支取{{output}}元，持有{{value}}元。绝对收益率为{{rate}}%</view>
+    <!-- ，持有2000元，年华收益率为220%</view> -->
+    <view class="index-desc" wx:if="{{diff}}">
+      下个定投日:{{next_day}}，还有{{diff}}天
+      <switch class="switch" name = "auto" bindchange="showed" color='#adadad'/>
+    </view>
+    <view class="index-desc" wx:else>
+      今天是您的定投日，今日定投基金如下：
+    </view>
+  </view>
+<view wx:if="{{showed}}">
+  <view wx:if="{{found}}">
+    <view class="index-desc" wx:if="{{diff != 0}}">
+      定投试算：
+    </view>
+    <view class="table">
+    <view class="tr bg-w">
+      <view class="th">基金代码</view>
+      <view class="th">当前价格</view>
+      <view class="th">预算份额</view>
+      <view class="th">实际份额</view>
+      <view class="th">实际金额</view>
+    </view>
+    <block wx:for="{{found}}" wx:for-item="info" wx:key="*this">
+      <view class="tr bg-g">
+          <view class="td">{{info.code}}</view>
+          <view class="td">{{price[index]}}</view>
+          <view class="td">{{cal_share[index]}}</view>
+          <view class="td">{{fact_share[index]}}</view>
+          <view class="td">{{fact_value[index]}}</view>
+      </view>
+    </block>
+    </view>
+  </view>
+  <view class="index-desc" wx:else>您还没有添加基金，请前往设置页添加。</view>
+</view>
+
+
+  <view class="index-bd">
+    <view class="kind-list">
+      <block wx:for-items="{{list}}" wx:key="{{item.id}}">
+        <view class="kind-list-item">
+          <view id="{{item.id}}" class="kind-list-item-hd {{item.open ? 'kind-list-item-hd-show' : ''}}" bindtap="kindToggle">
+            <view class="kind-list-text">{{item.name}}</view>
+          </view>
+          <view class="kind-list-item-bd {{item.open ? 'kind-list-item-bd-show' : ''}}">
+            <view class="navigator-box {{item.open ? 'navigator-box-show' : ''}}">
+              <view wx:if="{{item.pages}}">
+              <block wx:for-items="{{item.pages}}" wx:for-item="page" wx:key="*item">
+                <navigator url="../found/found?code={{page.code}}&group={{item.id}}" class="navigator">
+                  <view class="navigator-text">{{page.zh}}</view>
+                  <view class="navigator-arrow"></view>
+                </navigator>
+              </block>
+              </view>
+              <view wx:else>
+                <view class="index-desc">您还没有添加该类基金</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+    </view>
+  </view>
+</view>

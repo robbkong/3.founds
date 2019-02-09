@@ -1,0 +1,35 @@
+/* pages/mod_found/mod_found.wxss */
+@import "../../common/lib/weui.wxss";
+.index-desc {
+  margin: 20rpx;
+  color: #888888;
+  font-size: 29rpx;
+}
+.test 
+{
+  background-color: #f0f0f0;
+  margin: 15rpx;
+}
+.picker{
+  padding: 19rpx 26rpx;
+  background-color: #FFFFFF;
+}
+.test 
+{
+  background-color: #f0f0f0;
+  margin: 15rpx;
+}
+.online
+{
+  width:750rpx;height:60rpx;
+}
+.input_left{
+  width:250rpx;height:60rpx;float: left
+}
+.input_mid{
+  width:250rpx;height:60rpx;float: left
+}
+.input_right{
+  width:250rpx;height:60rpx;float: right
+}
+
